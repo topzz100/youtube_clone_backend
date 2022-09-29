@@ -1,17 +1,18 @@
 import express from 'express'
 import { addVideo, addView, deleteVideo, getByTag, getVideo, random, search, subVideos, trend, updateVideo } from '../controllers/video.js';
+import { verifyToken } from '../middleware/verifyToken.js';
 
 
 const router = express.Router();
 
 //add video
-router.post('/addVideo', addVideo)
+router.post("/", verifyToken, addVideo)
 
 //update video
-router.get('/:id', updateVideo)
+router.get('/:id', verifyToken, updateVideo)
 
 //delete video
-router.delete('/:id', deleteVideo)
+router.delete('/:id', verifyToken, deleteVideo)
 
 //get video
 router.get('/:id', getVideo)
